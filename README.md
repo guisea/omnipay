@@ -3,12 +3,12 @@
 **An easy to use, consistent payment processing library for PHP 5.3+**
 
 [![Build Status](https://travis-ci.org/thephpleague/omnipay-common.png?branch=master)](https://travis-ci.org/thephpleague/omnipay-common)
-[![Latest Stable Version](https://poser.pugx.org/omnipay/omnipay/version.png)](https://packagist.org/packages/omnipay/omnipay)
-[![Total Downloads](https://poser.pugx.org/omnipay/omnipay/d/total.png)](https://packagist.org/packages/omnipay/omnipay)
+[![Latest Stable Version](https://poser.pugx.org/omnipay/omnipay/version)](https://packagist.org/packages/omnipay/omnipay)
+[![Total Downloads](https://poser.pugx.org/omnipay/omnipay/d/total)](https://packagist.org/packages/omnipay/omnipay)
 
 Omnipay is a payment processing library for PHP. It has been designed based on
 ideas from [Active Merchant](http://activemerchant.org/), plus experience implementing
-dozens of gateways for [CI Merchant](http://ci-merchant.org/). It has a clear and consistent API,
+dozens of gateways for [CI Merchant]. It has a clear and consistent API,
 is fully unit tested, and even comes with an example application to get you started.
 
 **Why use Omnipay instead of a gateway's official PHP package/example code?**
@@ -37,8 +37,8 @@ use Omnipay\Omnipay;
 $gateway = Omnipay::create('Stripe');
 $gateway->setApiKey('abc123');
 
-$formData = ['number' => '4242424242424242', 'expiryMonth' => '6', 'expiryYear' => '2016', 'cvv' => '123'];
-$response = $gateway->purchase(['amount' => '10.00', 'currency' => 'USD', 'card' => $formData])->send();
+$formData = array('number' => '4242424242424242', 'expiryMonth' => '6', 'expiryYear' => '2016', 'cvv' => '123');
+$response = $gateway->purchase(array('amount' => '10.00', 'currency' => 'USD', 'card' => $formData))->send();
 
 if ($response->isSuccessful()) {
     // payment was successful: update database
@@ -71,25 +71,25 @@ For example, if your GitHub username was `santa`, and you were implementing the 
 payment library, a good name for your composer package would be `santa/omnipay-giftpay`.
 
 If you want to transfer your gateway to the `omnipay` GitHub organization and add it
-to the list of officially supported gateways, please open a pull request on the 
+to the list of officially supported gateways, please open a pull request on the
 [omnipay/common](https://github.com/thephpleague/omnipay-common) package. Before new gateways will
 be accepted, they must have 100% unit test code coverage, and follow the conventions
 and code style used in other Omnipay gateways.
 
 ## Installation
 
-Omnipay is installed via [Composer](http://getcomposer.org/). For most uses, you will need to require an individual gateway:
+Omnipay is installed via [Composer](https://getcomposer.org/). For most uses, you will need to require an individual gateway:
 
 ```
 composer require omnipay/paypal:~2.0
 ```
 
  To install all officially supported gateways:
- 
+
 ```
 composer require omnipay/omnipay:~2.0
 ```
- 
+
 > This will require **ALL** ~25 Omnipay gateways and is generally discouraged.
 
 
@@ -103,10 +103,14 @@ The following gateways are available:
 Gateway | Composer Package | Maintainer
 --- | --- | ---
 [2Checkout](https://github.com/thephpleague/omnipay-2checkout) | omnipay/2checkout | [Kayla Daniels](https://github.com/kayladnls)
+[2Checkout Improved](https://github.com/collizo4sky/omnipay-2checkout) | collizo4sky/omnipay-2checkout | [Agbonghama Collins](https://github.com/collizo4sky)
 [Agms](https://github.com/agmscode/omnipay-agms) | agmscode/omnipay-agms | [Maanas Royy](https://github.com/maanas)
+[Alipay(Global)](https://github.com/lokielse/omnipay-global-alipay) | lokielse/omnipay-global-alipay | [Loki Else](https://github.com/lokielse)
 [Alipay](https://github.com/lokielse/omnipay-alipay) | lokielse/omnipay-alipay | [Loki Else](https://github.com/lokielse)
 [Authorize.Net](https://github.com/thephpleague/omnipay-authorizenet) | omnipay/authorizenet | [Kayla Daniels](https://github.com/kayladnls)
 [Barclays ePDQ](https://github.com/samvaughton/omnipay-barclays-epdq) | samvaughton/omnipay-barclays-epdq | [Sam Vaughton](https://github.com/samvaughton)
+[Beanstream](https://github.com/lemonstand/omnipay-beanstream) | lemonstand/omnipay-beanstream | [LemonStand](https://github.com/lemonstand)
+[BKM Express](https://github.com/yasinkuyu/omnipay-bkm) | yasinkuyu/omnipay-bkm | [Yasin Kuyu](https://github.com/yasinkuyu)
 [Buckaroo](https://github.com/thephpleague/omnipay-buckaroo) | omnipay/buckaroo | [Kayla Daniels](https://github.com/kayladnls)
 [CardGate](https://github.com/cardgate/omnipay-cardgate) | cardgate/omnipay-cardgate | [CardGate](https://github.com/cardgate)
 [CardSave](https://github.com/thephpleague/omnipay-cardsave) | omnipay/cardsave | [Kayla Daniels](https://github.com/kayladnls)
@@ -114,10 +118,11 @@ Gateway | Composer Package | Maintainer
 [Coinbase](https://github.com/thephpleague/omnipay-coinbase) | omnipay/coinbase | [Kayla Daniels](https://github.com/kayladnls)
 [Creditcall](https://github.com/meebio/omnipay-creditcall) | meebio/omnipay-creditcall | [John Jablonski](https://github.com/jan-j)
 [Cybersource](https://github.com/dioscouri/omnipay-cybersource) | dioscouri/omnipay-cybersource | [Dioscouri Design](https://github.com/dioscouri)
-[Cybersource SOAP](https://github.com/DABSquared/omnipay-cybersource-soap) | dabsquared/omnipay-cybersource-soap | [DABSquared](https://github.com/DABSquared)
+[Cybersource SOAP](https://github.com/Klinche/omnipay-cybersource-soap) | dabsquared/omnipay-cybersource-soap | [DABSquared](https://github.com/DABSquared)
 [DataCash](https://github.com/coatesap/omnipay-datacash) | coatesap/omnipay-datacash | [Andrew Coates](https://github.com/coatesap)
 [Dummy](https://github.com/thephpleague/omnipay-dummy) | omnipay/dummy | [Kayla Daniels](https://github.com/kayladnls)
 [ecoPayz](https://github.com/dercoder/omnipay-ecopayz) | dercoder/omnipay-ecopayz | [Alexander Fedra](https://github.com/dercoder)
+[Elavon](https://github.com/lemonstand/omnipay-elavon) | lemonstand/omnipay-elavon | [LemonStand](https://github.com/lemonstand)
 [eWAY](https://github.com/thephpleague/omnipay-eway) | omnipay/eway | [Kayla Daniels](https://github.com/kayladnls)
 [Fasapay](https://github.com/andreas22/omnipay-fasapay) | andreas22/omnipay-fasapay | [Andreas Christodoulou](https://github.com/andreas22)
 [Fat Zebra](https://github.com/delatbabel/omnipay-fatzebra) | delatbabel/omnipay-fatzebra | [Del](https://github.com/delatbabel)
@@ -125,16 +130,23 @@ Gateway | Composer Package | Maintainer
 [Flo2cash](https://github.com/guisea/omnipay-flo2cash) | guisea/omnipay-flo2cash | [Aaron Guise](https://github.com/guisea)
 [Globalcloudpay](https://github.com/dercoder/omnipay-globalcloudpay) | dercoder/omnipay-globalcloudpay | [Alexander Fedra](https://github.com/dercoder)
 [GoCardless](https://github.com/thephpleague/omnipay-gocardless) | omnipay/gocardless | [Kayla Daniels](https://github.com/kayladnls)
+[GVP (Garanti)](https://github.com/yasinkuyu/omnipay-gvp) | yasinkuyu/omnipay-gvp | [Yasin Kuyu](https://github.com/yasinkuyu)
 [Helcim](https://github.com/academe/omnipay-helcim) | academe/omnipay-helcim | [Jason Judge](https://github.com/judgej)
+[IfthenPay](https://github.com/ifthenpay/omnipay-ifthenpay) | ifthenpay/omnipay-ifthenpay | [Rafael Almeida](https://github.com/rafaelcpalmeida)
+[Iyzico](https://github.com/yasinkuyu/omnipay-iyzico) | yasinkuyu/omnipay-iyzico | [Yasin Kuyu](https://github.com/yasinkuyu)
+[Komerci (Rede, former RedeCard)](https://github.com/byjg/omnipay-komerci) | byjg/omnipay-komerci | [João Gilberto Magalhães](https://github.com/byjg)
 [Komoju](https://github.com/dannyvink/omnipay-komoju) | vink/omnipay-komoju | [Danny Vink](https://github.com/dannyvink)
 [Manual](https://github.com/thephpleague/omnipay-manual) | omnipay/manual | [Kayla Daniels](https://github.com/kayladnls)
 [Migs](https://github.com/thephpleague/omnipay-migs) | omnipay/migs | [Kayla Daniels](https://github.com/kayladnls)
 [Mollie](https://github.com/thephpleague/omnipay-mollie) | omnipay/mollie | [Kayla Daniels](https://github.com/kayladnls)
+[MOLPay](https://github.com/leesiongchan/omnipay-molpay) | leesiongchan/molpay | [Lee Siong Chan](https://github.com/leesiongchan)
 [MultiCards](https://github.com/incube8/omnipay-multicards) | incube8/omnipay-multicards | [Del](https://github.com/delatbabel)
 [MultiSafepay](https://github.com/thephpleague/omnipay-multisafepay) | omnipay/multisafepay | [Alexander Deruwe](https://github.com/aderuwe)
+[NestPay (EST)](https://github.com/yasinkuyu/omnipay-nestpay) | yasinkuyu/omnipay-nestpay | [Yasin Kuyu](https://github.com/yasinkuyu)
 [Netaxept (BBS)](https://github.com/thephpleague/omnipay-netaxept) | omnipay/netaxept | [Kayla Daniels](https://github.com/kayladnls)
 [Netbanx](https://github.com/thephpleague/omnipay-netbanx) | omnipay/netbanx | [Maks Rafalko](https://github.com/borNfreee)
 [Neteller](https://github.com/alfaproject/omnipay-neteller) | alfaproject/omnipay-neteller | [João Dias](https://github.com/alfaproject)
+[NetPay](https://github.com/netpay/omnipay-netpay) | netpay/omnipay-netpay | [NetPay](https://github.com/netpay)
 [Network Merchants Inc. (NMI)](https://github.com/mfauveau/omnipay-nmi) | mfauveau/omnipay-nmi | [Matthieu Fauveau](https://github.com/mfauveau)
 [Pacnet](https://github.com/mfauveau/omnipay-pacnet) | mfauveau/omnipay-pacnet | [Matthieu Fauveau](https://github.com/mfauveau)
 [Pagar.me](https://github.com/descubraomundo/omnipay-pagarme) | descubraomundo/omnipay-pagarme | [Descubra o Mundo](https://github.com/descubraomundo)
@@ -148,24 +160,31 @@ Gateway | Composer Package | Maintainer
 [Paysafecard](https://github.com/dercoder/omnipay-paysafecard) | dercoder/omnipay-paysafecard | [Alexander Fedra](https://github.com/dercoder)
 [PayTrace](https://github.com/iddqdidkfa/omnipay-paytrace) | softcommerce/omnipay-paytrace | [Oleg Ilyushyn](https://github.com/iddqdidkfa)
 [PayU](https://github.com/efesaid/omnipay-payu) | omnipay/payu | [efesaid](https://github.com/efesaid)
-[NestPay (EST)](https://github.com/yasinkuyu/omnipay-nestpay) | yasinkuyu/omnipay-nestpay | [Yasin Kuyu](https://github.com/yasinkuyu)
 [Pin Payments](https://github.com/thephpleague/omnipay-pin) | omnipay/pin | [Kayla Daniels](https://github.com/kayladnls)
+[Portmanat](https://github.com/dercoder/omnipay-portmanat) | dercoder/omnipay-portmanat | [Alexander Fedra](https://github.com/dercoder)
+[Posnet](https://github.com/yasinkuyu/omnipay-posnet) | yasinkuyu/omnipay-posnet | [Yasin Kuyu](https://github.com/yasinkuyu)
+[Postfinance](https://github.com/bummzack/omnipay-postfinance) | bummzack/omnipay-postfinance | [Roman Schmid](https://github.com/bummzack)
 [Realex](https://github.com/coatesap/omnipay-realex) | coatesap/omnipay-realex | [Andrew Coates](https://github.com/coatesap)
+[RedSys](https://github.com/jsampedro77/sermepa-omnipay) | nazka/sermepa-omnipay | [Javier Sampedro](https://github.com/jsampedro77)
+[RentMoola](https://github.com/rentmoola/omnipay-rentmoola) | rentmoola/omnipay-rentmoola | [Geoff Shaw](https://github.com/Shawg)
 [Sage Pay](https://github.com/thephpleague/omnipay-sagepay) | omnipay/sagepay | [Kayla Daniels](https://github.com/kayladnls)
+[SecPay](https://github.com/justinbusschau/omnipay-secpay) | justinbusschau/omnipay-secpay | [Justin Busschau](https://github.com/justinbusschau)
 [SecurePay](https://github.com/thephpleague/omnipay-securepay) | omnipay/securepay | [Kayla Daniels](https://github.com/kayladnls)
 [Secure Trading](https://github.com/meebio/omnipay-secure-trading) | meebio/omnipay-secure-trading | [John Jablonski](https://github.com/jan-j)
-[SecPay](https://github.com/justinbusschau/omnipay-secpay) | justinbusschau/omnipay-secpay | [Justin Busschau](https://github.com/justinbusschau)
 [Sisow](https://github.com/fruitcakestudio/omnipay-sisow ) | fruitcakestudio/omnipay-sisow | [Fruitcake Studio](https://github.com/fruitcakestudio)
 [Skrill](https://github.com/alfaproject/omnipay-skrill) | alfaproject/omnipay-skrill | [João Dias](https://github.com/alfaproject)
 [Stripe](https://github.com/thephpleague/omnipay-stripe) | omnipay/stripe | [Kayla Daniels](https://github.com/kayladnls)
 [TargetPay](https://github.com/thephpleague/omnipay-targetpay) | omnipay/targetpay | [Alexander Deruwe](https://github.com/aderuwe)
-[UnionPay](https://github.com/lokielse/omnipay-unionpay) | omnipay/lokielse-unionpay | [Loki Else](https://github.com/lokielse)
+[UnionPay](https://github.com/lokielse/omnipay-unionpay) | lokielse/omnipay-unionpay | [Loki Else](https://github.com/lokielse)
+[Vantiv](https://github.com/lemonstand/omnipay-vantiv) | lemonstand/omnipay-vantiv | [LemonStand](https://github.com/lemonstand)
+[Veritrans](https://github.com/andylibrian/omnipay-veritrans) | andylibrian/omnipay-veritrans | [Andy Librian](https://github.com/andylibrian)
+[WebMoney](https://github.com/dercoder/omnipay-webmoney) | dercoder/omnipay-webmoney | [Alexander Fedra](https://github.com/dercoder)
 [WeChat](https://github.com/labs7in0/omnipay-wechat) | labs7in0/omnipay-wechat | [7IN0's Labs](https://github.com/labs7in0)
-[WePay](https://github.com/Collizo4sky/omnipay-wepay) | Collizo4sky/omnipay-wepay | [Agbonghama Collins](https://github.com/Collizo4sky)
+[WechatPay](https://github.com/lokielse/omnipay-wechatpay) | lokielse/omnipay-wechatpay |  [Loki Else](https://github.com/lokielse)
+[WePay](https://github.com/collizo4sky/omnipay-wepay) | collizo4sky/omnipay-wepay | [Agbonghama Collins](https://github.com/collizo4sky)
 [Wirecard](https://github.com/igaponov/omnipay-wirecard) | igaponov/omnipay-wirecard | [Igor Gaponov](https://github.com/igaponov)
 [WorldPay](https://github.com/thephpleague/omnipay-worldpay) | omnipay/worldpay | [Kayla Daniels](https://github.com/kayladnls)
 [WorldPay XML Direct](https://github.com/teaandcode/omnipay-worldpay-xml) | teaandcode/omnipay-worldpay-xml | [Dave Nash](https://github.com/teaandcode)
-[Veritrans](https://github.com/andylibrian/omnipay-veritrans) | andylibrian/omnipay-veritrans | [Andy Librian](https://github.com/andylibrian)
 [Yandex.Money](https://github.com/aTastyCookie/yandexmoney_omnipay) | aTastyCookie/yandexmoney_omnipay | [Roman Ananyev](https://github.com/aTastyCookie/)
 
 Gateways are created and initialized like so:
@@ -312,11 +331,11 @@ Pass the options through to the method like so:
 
 ```php
 $card = new CreditCard($formData);
-$request = $gateway->authorize([
+$request = $gateway->authorize(array(
     'amount' => '10.00', // this represents $10.00
     'card' => $card,
     'returnUrl' => 'https://www.example.com/return',
-]);
+));
 ```
 
 When calling the `completeAuthorize` or `completePurchase` methods, the exact same arguments should be provided as
@@ -342,7 +361,7 @@ For a successful responses, a reference will normally be generated, which can be
 at a later date. The following methods are always available:
 
 ```php
-$response = $gateway->purchase(['amount' => '10.00', 'card' => $card])->send();
+$response = $gateway->purchase(array('amount' => '10.00', 'card' => $card))->send();
 
 $response->isSuccessful(); // is the response successful?
 $response->isRedirect(); // is the response a redirect?
@@ -361,7 +380,7 @@ POST (FormRedirectResponse). These could potentially be combined into a single r
 After processing a payment, the cart should check whether the response requires a redirect, and if so, redirect accordingly:
 
 ```php
-$response = $gateway->purchase(['amount' => '10.00', 'card' => $card])->send();
+$response = $gateway->purchase(array('amount' => '10.00', 'card' => $card))->send();
 if ($response->isSuccessful()) {
     // payment is complete
 } elseif ($response->isRedirect()) {
@@ -394,7 +413,7 @@ You can handle both scenarios by wrapping the entire request in a try-catch bloc
 
 ```php
 try {
-    $response = $gateway->purchase(['amount' => '10.00', 'card' => $card])->send();
+    $response = $gateway->purchase(array('amount' => '10.00', 'card' => $card))->send();
     if ($response->isSuccessful()) {
         // mark order as complete
     } elseif ($response->isRedirect()) {
@@ -421,7 +440,7 @@ are available:
 
 Once you have a `cardReference`, you can use it instead of the `card` parameter when creating a charge:
 
-    $gateway->purchase(['amount' => '10.00', 'cardReference' => 'abc']);
+    $gateway->purchase(array('amount' => '10.00', 'cardReference' => 'abc'));
 
 ## Recurring Billing
 
